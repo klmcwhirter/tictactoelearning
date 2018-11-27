@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="ttt-header">
+    <mat-toolbar color="primary">
+      <h1>Tic Tac Toe</h1>
+    </mat-toolbar>
+  </div>
+
+  <aside class="ttt-players">
+    <mat-toolbar color="accent">
+      <h3>Select Players</h3>
+    </mat-toolbar>
+
+    <div class="ttt-labeled">
+      <label for="numPlayers"># of Human Players: {{numHumanPlayers(this.players)}}</label>
+    </div>
+
+    <div *ngFor="let player of players; let p = index">
+      <label class="ttt-labeled" for="player{{p+1}}">Player {{p+1}} ({{PLAYER_PIECES[p]}}): </label>
+      <input name="player{{p+1}}" [(ngModel)]="player.name" />
+
+      <mat-radio-group [(ngModel)]="player.kind" name="player{{p+1}}">
+        <mat-radio-button *ngFor="let kind of PlayerKinds" [value]="kind.value" labelPosition="before">
+          {{kind.name}}
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <div>
+      <button mat-button color="primary" (click)="onStart()">Start</button>
+      <button mat-button color="warn" (click)="onEnd()" *ngIf="gameService.game.startDate && !gameService.game.endDate">End</button>
+    </div>
+
+    <br />
+
+    <mat-toolbar class="ttt-game" *ngIf="gameService.game.startDate">
+      <h3>Game # {{gameService.game.id}} <span *ngIf="gameService.game.result">{{gameResult()}}</span></h3>
+    </mat-toolbar>
+
+    <div *ngIf="DEBUG">
+      <p>game: {{gameService.game | json}}</p>
+      <p>currentPlayer: {{boardService.board.currentPlayer | json}}</p>
+      <p>board: {{boardService.board | json}}</p>
+      <p>board.pieces: {{boardService.board.pieces | json}}</p>
+    </div>
+
+  </aside>
+
+  <article class="ttt-board">
+    <app-board></app-board>
+  </article>
+</div>

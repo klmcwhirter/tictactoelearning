@@ -1,0 +1,18 @@
+@import "~@angular/material/_theming.scss";
+
+.piece-red { color: mat-color($mat-red, 500, 1); }
+.piece-blue { color: mat-color($mat-indigo, 500, 1); }
+
+
+table, tr ,td {
+    border: black 2px solid;
+    border-collapse: collapse;
+}
+
+.ttt-cell {
+    padding: 1em;
+    font-size: xx-large;
+    text-align: center;
+    width: 1.2em;
+    height: 1.2em;
+}
