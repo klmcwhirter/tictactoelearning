@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 
 import { Game, Move, Player } from './game.model';
 
-const baseUrl = 'http://tttlapi-dev1/api/v1/games';
+const baseUrl = '/api/v1/games';
 
 @Injectable({
   providedIn: 'root'

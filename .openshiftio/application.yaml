@@ -26,7 +26,7 @@ parameters:
   - name: SOURCE_REPOSITORY_REF
     description: The branch name for the application
     displayName: Source Branch
-    value: "2.0"
+    value: "master"
     required: true
   - name: SOURCE_REPOSITORY_DIR
     description: The location within the source repo of the application
@@ -36,7 +36,7 @@ parameters:
   - name: OUTPUT_DIR
     description: The location of the compiled static files from your web apps builder
     displayName: Output Directory
-    value: dist
+    value: dist/tictactoe
     required: false
   - name: GITHUB_WEBHOOK_SECRET
     description: A secret string used to configure the GitHub webhook.
