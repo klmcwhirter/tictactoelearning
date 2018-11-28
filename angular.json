@@ -19,6 +19,8 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
+              "src/nginx-cfg/",
+              "src/nginx-default-cfg/",
               "src/favicon.ico",
               "src/assets"
             ],
