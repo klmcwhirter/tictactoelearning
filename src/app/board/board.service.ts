@@ -5,6 +5,22 @@ import { Game, Move, PLAYER_PIECES } from '../game.model';
 
 const EMPTY_SPOTS = () => [Array(3).fill(' '), Array(3).fill(' '), Array(3).fill(' ')];
 
+
+  /*
+  **x=> 0   1   2   y
+  **                |
+  **  +---+---+---+ v
+  **  | 0 | 1 | 2 | 0
+  **  +---+---+---+
+  **  | 3 | 4 | 5 | 1
+  **  +---+---+---+
+  **  | 6 | 7 | 8 | 2
+  **  +---+---+---+
+  */
+
+ function spotToX(spot: number): number { return spot % 3; }
+ function spotToY(spot: number): number { return Math.floor(spot / 3); }
+
 export class Board {
   id?: number;
   spots?: string[][];
@@ -32,7 +48,9 @@ export class Board {
 
   placePiece(move: Move) {
     const piece = PLAYER_PIECES[move.playerIndex];
-    this.spots[move.ycoord][move.xcoord] = piece;
+    const x = spotToX(move.spot);
+    const y = spotToY(move.spot);
+    this.spots[y][x] = piece;
     if (!this.firstMove) {
       this.firstMove = move;
     }

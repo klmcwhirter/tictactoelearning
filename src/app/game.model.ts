@@ -4,21 +4,6 @@ export const PLAYER_PIECES = ['X', 'O'];
 export class Move {
   playerIndex: number;
   spot: number;
-
-  /*
-  **x=> 0   1   2   y
-  **                |
-  **  +---+---+---+ v
-  **  | 0 | 1 | 2 | 0
-  **  +---+---+---+
-  **  | 3 | 4 | 5 | 1
-  **  +---+---+---+
-  **  | 6 | 7 | 8 | 2
-  **  +---+---+---+
-  */
-
-  get xcoord(): number { return this.spot % 3; }
-  get ycoord(): number { return Math.floor(this.spot / 3); }
 }
 
 export enum PlayerKind {
