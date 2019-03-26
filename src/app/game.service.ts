@@ -42,8 +42,8 @@ export class GameService {
       }, (error => console.log(error)));
   }
 
-  move(playerIndex: number, x: number, y: number) {
-    this.httpClient.patch<Game>(`${baseUrl}/${this.game.id}/move`, <Move>{ playerIndex: playerIndex, x: x, y: y })
+  move(playerIndex: number, spot: number) {
+    this.httpClient.patch<Game>(`${baseUrl}/${this.game.id}/move`, <Move>{ playerIndex: playerIndex, spot: spot })
       .subscribe(game => {
         this.game = new Game(game);
         this.gameSubject.next(this.game);

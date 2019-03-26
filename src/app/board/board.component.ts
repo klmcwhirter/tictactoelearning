@@ -25,7 +25,7 @@ export class BoardComponent implements OnInit {
   onPlacePiece(x: number, y: number) {
     // console.log(x, y);
     if (!this.gameService.game.complete && !this.boardService.board.cellOccupied(x, y)) {
-      this.gameService.move(this.boardService.board.currentPlayer, x, y);
+      this.gameService.move(this.boardService.board.currentPlayer, this.boardService.spotFromCoords(x, y));
     }
   }
 }

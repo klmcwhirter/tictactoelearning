@@ -3,21 +3,21 @@ import { Injectable } from '@angular/core';
 import { GameService } from '../game.service';
 import { Game, Move, PLAYER_PIECES } from '../game.model';
 
-const EMPTY_PIECES = () => [Array(3).fill(' '), Array(3).fill(' '), Array(3).fill(' ')];
+const EMPTY_SPOTS = () => [Array(3).fill(' '), Array(3).fill(' '), Array(3).fill(' ')];
 
 export class Board {
   id?: number;
-  pieces?: string[][];
+  spots?: string[][];
   firstMove?: Move;
   moves?: Move[];
   currentPlayer: number;
 
   cellOccupied(x: number, y: number): boolean {
-    return this.pieces[y][x] !== ' ';
+    return this.spots[y][x] !== ' ';
   }
 
   fromGame(game?: Game) {
-    this.pieces = EMPTY_PIECES();
+    this.spots = EMPTY_SPOTS();
     this.firstMove = null;
     if (game) {
       this.moves = game.moves || [];
@@ -32,7 +32,7 @@ export class Board {
 
   placePiece(move: Move) {
     const piece = PLAYER_PIECES[move.playerIndex];
-    this.pieces[move.y][move.x] = piece;
+    this.spots[move.y][move.x] = piece;
     if (!this.firstMove) {
       this.firstMove = move;
     }
@@ -65,5 +65,20 @@ export class BoardService {
         this.board.fromGame(game);
         this.board.updateCurrentPlayer();
       });
+  }
+
+  /*
+  **x=> 0   1   2   y
+  **                |
+  **  +---+---+---+ v
+  **  | 0 | 1 | 2 | 0
+  **  +---+---+---+
+  **  | 3 | 4 | 5 | 1
+  **  +---+---+---+
+  **  | 6 | 7 | 8 | 2
+  **  +---+---+---+
+  */
+  spotFromCoords(x: number, y: number): number {
+    return y * 3 + x;
   }
 }
