@@ -32,7 +32,7 @@ export class Board {
 
   placePiece(move: Move) {
     const piece = PLAYER_PIECES[move.playerIndex];
-    this.spots[move.y][move.x] = piece;
+    this.spots[move.ycoord][move.xcoord] = piece;
     if (!this.firstMove) {
       this.firstMove = move;
     }

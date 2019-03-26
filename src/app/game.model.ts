@@ -17,8 +17,8 @@ export class Move {
   **  +---+---+---+
   */
 
-  get x(): number { return this.spot % 3; }
-  get y(): number { return Math.floor(this.spot / 3); }
+  get xcoord(): number { return this.spot % 3; }
+  get ycoord(): number { return Math.floor(this.spot / 3); }
 }
 
 export enum PlayerKind {
