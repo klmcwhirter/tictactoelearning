@@ -17,8 +17,6 @@ import { BoardService } from './board/board.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  DEBUG = false;
-
   PLAYER_PIECES = PLAYER_PIECES;
   PlayerKinds = PlayerKinds;
   numHumanPlayers = numHumanPlayers;
@@ -43,6 +41,12 @@ export class AppComponent implements OnInit {
     return rc;
   }
 
+  onBlur(event) {
+    if (event.target.value) {
+      this.gameService.getGame(event.target.value);
+    }
+  }
+
   onEnd() {
     this.gameService.end();
   }
@@ -51,3 +55,4 @@ export class AppComponent implements OnInit {
     this.gameService.start(this.players);
   }
 }
+

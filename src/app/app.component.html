@@ -6,7 +6,7 @@
   </div>
 
   <aside class="ttt-players">
-    <mat-toolbar color="accent">
+    <mat-toolbar color="accent" class="mat-elevation-z2">
       <h3>Select Players</h3>
     </mat-toolbar>
 
@@ -27,22 +27,45 @@
 
     <div>
       <button mat-button color="primary" (click)="onStart()">Start</button>
-      <button mat-button color="warn" (click)="onEnd()" *ngIf="gameService.game.startDate && !gameService.game.endDate">End</button>
+      <button mat-button color="warn" (click)="onEnd()"
+        [disabled]="!gameService.game.startDate || gameService.game.endDate">End</button>
+
+      <input placeholder="Game # to view" (blur)="onBlur($event)" style="margin-left: 12px;" />
     </div>
 
     <br />
 
-    <mat-toolbar class="ttt-game" *ngIf="gameService.game.startDate">
+    <mat-toolbar class="ttt-game mat-elevation-z2" *ngIf="gameService.game.startDate">
       <h3>Game # {{gameService.game.id}} <span *ngIf="gameService.game.result">{{gameResult()}}</span></h3>
     </mat-toolbar>
 
-    <div *ngIf="DEBUG">
-      <p>game: {{gameService.game | json}}</p>
-      <p>currentPlayer: {{boardService.board.currentPlayer | json}}</p>
-      <p>board: {{boardService.board | json}}</p>
-      <p>board.pieces: {{boardService.board.pieces | json}}</p>
-    </div>
+    <br />
 
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>details</mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <p>game: {{gameService.game | json}}</p>
+        <p>currentPlayer: {{boardService.board.currentPlayer | json}}</p>
+        <p>board: {{boardService.board | json}}</p>
+        <p>board.spots: {{boardService.board.spots | json}}</p>
+        <div class="ttt-moves">
+          board.moves:
+          <table>
+            <tr>
+              <th>PlayerIndex</th>
+              <th>Spot</th>
+            </tr>
+            <tr *ngFor="let move of boardService.board.moves">
+              <td>{{move.playerIndex}}</td>
+              <td>{{move.spot}}</td>
+            </tr>
+          </table>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
   </aside>
 
   <article class="ttt-board">

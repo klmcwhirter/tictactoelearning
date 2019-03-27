@@ -23,6 +23,7 @@ export class GameService {
     this.httpClient.get<Game>(`${baseUrl}/${id}`)
       .subscribe(game => {
         this.game = new Game(game);
+        this.gameSubject.next(this.game);
       }, (error => console.log(error)));
   }
 

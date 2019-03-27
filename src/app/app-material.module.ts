@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import {
   MatButtonModule,
   MatCardModule,
+  MatExpansionModule,
   MatFormFieldModule,
   MatRadioModule,
   MatSliderModule,
@@ -15,6 +16,7 @@ import {
     CommonModule,
     MatButtonModule,
     MatCardModule,
+    MatExpansionModule,
     MatFormFieldModule,
     MatRadioModule,
     MatSliderModule,
@@ -23,6 +25,7 @@ import {
   exports: [
     MatButtonModule,
     MatCardModule,
+    MatExpansionModule,
     MatFormFieldModule,
     MatRadioModule,
     MatSliderModule,
