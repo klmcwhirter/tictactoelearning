@@ -46,11 +46,6 @@
         <mat-expansion-panel-header>
           <mat-panel-title>details</mat-panel-title>
         </mat-expansion-panel-header>
-
-        <p>game: {{gameService.game | json}}</p>
-        <p>currentPlayer: {{boardService.board.currentPlayer | json}}</p>
-        <p>board: {{boardService.board | json}}</p>
-        <p>board.spots: {{boardService.board.spots | json}}</p>
         <div class="ttt-moves">
           board.moves:
           <table>
@@ -64,6 +59,11 @@
             </tr>
           </table>
         </div>
+
+        <p>game: {{gameService.game | json}}</p>
+        <p>currentPlayer: {{boardService.board.currentPlayer | json}}</p>
+        <p>board: {{boardService.board | json}}</p>
+        <p>board.spots: {{boardService.board.spots | json}}</p>
       </mat-expansion-panel>
     </mat-accordion>
   </aside>
