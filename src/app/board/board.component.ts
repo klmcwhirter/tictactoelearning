@@ -15,7 +15,7 @@ export class BoardComponent implements OnInit {
   };
 
   constructor(
-    private boardService: BoardService,
+    public boardService: BoardService,
     public gameService: GameService
   ) { }
 
