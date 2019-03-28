@@ -32,7 +32,7 @@ export class AppComponent implements OnInit {
   ];
 
   constructor(
-    private gameService: GameService
+    public gameService: GameService
   ) {
     this.gameService.games$
       .subscribe(games => {

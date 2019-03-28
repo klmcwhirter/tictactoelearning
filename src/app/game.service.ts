@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Subject, Observable, of } from 'rxjs';
+import { Subject } from 'rxjs';
+
+import { environment } from '../environments/environment';
 
 import { Game, Move, Player } from './game.model';
 
-const baseUrl = '/api/v1/games';
+const baseUrl = `${environment.baseUri}/api/v1/games`;
 
 @Injectable({
   providedIn: 'root'

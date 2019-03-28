@@ -16,7 +16,7 @@ export class BoardComponent implements OnInit {
 
   constructor(
     private boardService: BoardService,
-    private gameService: GameService
+    public gameService: GameService
   ) { }
 
   ngOnInit() {
