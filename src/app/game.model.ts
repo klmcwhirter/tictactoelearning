@@ -29,7 +29,9 @@ export enum GameResult {
 export class Game {
   id: number;
   moves: Move[];
+  numMoves: number;
   players: Player[];
+  playerNames: string;
   startDate: Date;
   endDate?: Date;
   complete: boolean;
@@ -39,14 +41,17 @@ export class Game {
     if (game) {
       this.id = game.id;
       this.moves = game.moves;
+      this.numMoves = game.numMoves;
       this.players = game.players;
       this.players.forEach(p => p.kind = +p.kind);
+      this.playerNames = game.players.map(p => p.name).join(', ');
       this.startDate = game.startDate;
       this.endDate = game.endDate;
       this.complete = game.complete;
       this.result = game.result;
     }
   }
+
 }
 
 export function numHumanPlayers(players: Player[]): number { return players ? players.filter(p => p.kind <= PlayerKind.Human).length : 0; }

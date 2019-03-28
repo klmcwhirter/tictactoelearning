@@ -26,6 +26,7 @@
 
 .ttt-board {
     grid-area: board;
+    margin-right: 1em;
 }
 
 mat-radio-button:first-child {
@@ -47,19 +48,11 @@ mat-radio-button:not(:last-child) {
     margin: 1em;
 }
 
-.ttt-moves {
-    table {
-        border-collapse: collapse;
+.ttt-games {
+    height: 400px;
+    overflow: auto;
 
-        tr {
-            td, th {
-                border: solid black 1px;
-                padding: 0.25em;
-            }
-            th {
-                font-size: smaller;
-                font-weight: 500;
-            }
-        }
+    table {
+        width: 100%;
     }
 }

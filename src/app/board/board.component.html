@@ -1,18 +1,44 @@
-<div class="ttt-game-container">
-  <mat-toolbar class="ttt-game mat-elevation-z2" *ngIf="gameService.game.startDate">
-    <h3>Game # {{gameService.game.id}} <span *ngIf="gameService.game.result">{{gameResult()}}</span></h3>
-  </mat-toolbar>
+<div class="ttt-board-container">
+  <div class="ttt-game-container">
+    <mat-toolbar class="ttt-game mat-elevation-z2" *ngIf="gameService.game.startDate">
+      <h3>Game # {{gameService.game.id}} <span *ngIf="gameService.game.result">{{gameService.game | gameResult}}</span>
+      </h3>
+    </mat-toolbar>
 
-  <mat-card>
-    <mat-card-content>
-      <table>
-        <tr *ngFor="let row of boardService.board.spots; let y = index">
-          <td class="ttt-cell" *ngFor="let piece of row; let x = index" (click)="onPlacePiece(x, y)">
-            <span [class]="colors[piece]">{{piece}}</span>
-          </td>
-        </tr>
-      </table>
-    </mat-card-content>
-  </mat-card>
-  <div>&nbsp;</div>
+    <mat-card>
+      <mat-card-content>
+        <table>
+          <tr *ngFor="let row of boardService.board.spots; let y = index">
+            <td class="ttt-cell" *ngFor="let piece of row; let x = index" (click)="onPlacePiece(x, y)">
+              <span [class]="colors[piece]">{{piece}}</span>
+            </td>
+          </tr>
+        </table>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="ttt-game-details-container">
+    <mat-expansion-panel expanded="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>details</mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="ttt-moves">
+        board.moves:
+        <table>
+          <tr>
+            <th>PlayerIndex</th>
+            <th>Spot</th>
+          </tr>
+          <tr *ngFor="let move of boardService.board.moves">
+            <td>{{move.playerIndex}}</td>
+            <td>{{move.spot}}</td>
+          </tr>
+        </table>
+      </div>
+
+      <p>currentPlayer: {{boardService.board.currentPlayer | json}}</p>
+      <p>game: {{gameService.game | json}}</p>
+    </mat-expansion-panel>
+  </div>
 </div>

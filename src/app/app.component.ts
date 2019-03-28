@@ -1,15 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
 import {
-  GameResult,
   numHumanPlayers,
-  ParseEnum,
   PLAYER_PIECES,
   PlayerKind,
-  PlayerKinds
+  PlayerKinds,
+  GameResult,
 } from './game.model';
 import { GameService } from './game.service';
-import { BoardService } from './board/board.service';
 
 @Component({
   selector: 'app-root',
@@ -21,23 +19,38 @@ export class AppComponent implements OnInit {
   PlayerKinds = PlayerKinds;
   numHumanPlayers = numHumanPlayers;
 
+  numGames = 0;
+  winsX = 0;
+  winsO = 0;
+  ties = 0;
+
+  displayedColumns = ['id', 'playerNames', 'numMoves', 'result'];
+
   players = [
     { number: 0, name: '', kind: PlayerKind.Human },
     { number: 1, name: '', kind: PlayerKind.Human }
   ];
 
   constructor(
-    private boardService: BoardService,
     private gameService: GameService
   ) {
+    this.gameService.games$
+      .subscribe(games => {
+        this.numGames = games.length;
+        this.winsX = games.filter(g => g.result === GameResult.XWins).length / this.numGames;
+        this.winsO = games.filter(g => g.result === GameResult.OWins).length / this.numGames;
+        this.ties = games.filter(g => g.result === GameResult.Tie).length / this.numGames;
+      });
   }
 
   ngOnInit() {
+    this.gameService.getGames();
   }
 
   onBlur(event) {
     if (event.target.value) {
       this.gameService.getGame(event.target.value);
+      event.target.value = '';
     }
   }
 

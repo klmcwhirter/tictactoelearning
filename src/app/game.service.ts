@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Subject } from 'rxjs';
+import { Subject, Observable, of } from 'rxjs';
 
 import { Game, Move, Player } from './game.model';
 
-const baseUrl = '/api/v1/games';
+const baseUrl = 'http://localhost:8080/api/v1/games';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,8 @@ const baseUrl = '/api/v1/games';
 export class GameService {
   game: Game = new Game();
   gameSubject = new Subject<Game>();
+  gamesSubject = new Subject<Game[]>();
+  games$ = this.gamesSubject.asObservable();
 
   get players(): Player[] { return this.game.players; }
 
@@ -27,11 +29,24 @@ export class GameService {
       }, (error => console.log(error)));
   }
 
+  getGames(): void {
+    this.httpClient.get<Game[]>(`${baseUrl}`)
+      .subscribe(
+        games => {
+          games.forEach(g => g.playerNames = g.players.map(p => p.name).join(', '));
+          games = games.sort((a: Game, b: Game) => b.id - a.id);
+          this.gamesSubject.next(games);
+        },
+        (error => console.log(error))
+      );
+  }
+
   start(players: Player[]): void {
     this.httpClient.post<Game>(`${baseUrl}/start`, players)
       .subscribe(game => {
         this.game = new Game(game);
         this.gameSubject.next(this.game);
+        this.getGames();
       }, (error => console.log(error)));
   }
 
@@ -40,6 +55,7 @@ export class GameService {
       .subscribe(game => {
         this.game = new Game(game);
         this.gameSubject.next(this.game);
+        this.getGames();
       }, (error => console.log(error)));
   }
 
@@ -48,6 +64,7 @@ export class GameService {
       .subscribe(game => {
         this.game = new Game(game);
         this.gameSubject.next(this.game);
+        this.getGames();
       }, (error => console.log(error)));
   }
 }

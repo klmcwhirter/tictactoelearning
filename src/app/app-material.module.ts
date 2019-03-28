@@ -4,10 +4,12 @@ import { CommonModule } from '@angular/common';
 import {
   MatButtonModule,
   MatCardModule,
+  MatDividerModule,
   MatExpansionModule,
   MatFormFieldModule,
   MatRadioModule,
   MatSliderModule,
+  MatTableModule,
   MatToolbarModule
 } from '@angular/material';
 
@@ -16,19 +18,23 @@ import {
     CommonModule,
     MatButtonModule,
     MatCardModule,
+    MatDividerModule,
     MatExpansionModule,
     MatFormFieldModule,
     MatRadioModule,
     MatSliderModule,
+    MatTableModule,
     MatToolbarModule,
   ],
   exports: [
     MatButtonModule,
     MatCardModule,
+    MatDividerModule,
     MatExpansionModule,
     MatFormFieldModule,
     MatRadioModule,
     MatSliderModule,
+    MatTableModule,
     MatToolbarModule
   ],
   declarations: []

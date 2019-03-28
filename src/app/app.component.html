@@ -30,36 +30,49 @@
       <button mat-button color="warn" (click)="onEnd()"
         [disabled]="!gameService.game.startDate || gameService.game.endDate">End</button>
 
-      <input placeholder="Game # to view" (blur)="onBlur($event)" style="margin-left: 12px;" />
+      <input placeholder="Game # to view" (blur)="onBlur($event)" style="margin-left: 0.75em;" />
     </div>
 
     <br />
 
-    <mat-accordion>
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>details</mat-panel-title>
-        </mat-expansion-panel-header>
-        <div class="ttt-moves">
-          board.moves:
-          <table>
-            <tr>
-              <th>PlayerIndex</th>
-              <th>Spot</th>
-            </tr>
-            <tr *ngFor="let move of boardService.board.moves">
-              <td>{{move.playerIndex}}</td>
-              <td>{{move.spot}}</td>
-            </tr>
-          </table>
-        </div>
+    <mat-expansion-panel expanded="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>games</mat-panel-title>
+        <mat-panel-description>
+          # games: {{numGames}}, X Wins:{{winsX | percent:'1.1-1'}}, O Wins: {{winsO | percent:'1.1-1'}}, Ties: {{ties | percent:'1.1-1'}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="ttt-games">
+        <table mat-table [dataSource]="gameService.games$">
+          <!-- id Column -->
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> Id </th>
+            <td mat-cell *matCellDef="let game"> {{game.id}} </td>
+          </ng-container>
 
-        <p>game: {{gameService.game | json}}</p>
-        <p>currentPlayer: {{boardService.board.currentPlayer | json}}</p>
-        <p>board: {{boardService.board | json}}</p>
-        <p>board.spots: {{boardService.board.spots | json}}</p>
-      </mat-expansion-panel>
-    </mat-accordion>
+          <!-- playerNames Column -->
+          <ng-container matColumnDef="playerNames">
+            <th mat-header-cell *matHeaderCellDef> Players </th>
+            <td mat-cell *matCellDef="let game"> {{game.playerNames}} </td>
+          </ng-container>
+
+          <!-- numMoves Column -->
+          <ng-container matColumnDef="numMoves">
+            <th mat-header-cell *matHeaderCellDef> # moves </th>
+            <td mat-cell *matCellDef="let game"> {{game.numMoves}} </td>
+          </ng-container>
+
+          <!-- result Column -->
+          <ng-container matColumnDef="result">
+            <th mat-header-cell *matHeaderCellDef> Result </th>
+            <td mat-cell *matCellDef="let game"> {{game | gameResult}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+    </mat-expansion-panel>
   </aside>
 
   <article class="ttt-board">

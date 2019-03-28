@@ -3,19 +3,35 @@
 .piece-red { color: mat-color($mat-red, 500, 1); }
 .piece-blue { color: mat-color($mat-indigo, 500, 1); }
 
-.ttt-game-container {
-    width: 50%;
+.ttt-board-container {
+    display: grid;
+    grid-gap: 1em;
+    grid-row-gap: 1em;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+    'game details'
 }
 
-.ttt-game {
-    background-color: mat-color($mat-blue, A100, 0.26);
+.ttt-game-container {
+    grid-area: game;
+
+    .ttt-game {
+        background-color: mat-color($mat-blue, A100, 0.26);
+    }
+    
+    table {
+        margin: 0 auto;
+    }
+}
+
+.ttt-game-details-container {
+    grid-area: details;
 }
 
 table {
     border-collapse: collapse;
-    margin: 0 auto;
-
-    tr ,td {
+    
+    th ,td {
         border: black 2px solid;
     }
 }
@@ -26,4 +42,18 @@ table {
     text-align: center;
     width: 1.2em;
     height: 1.2em;
+}
+
+.ttt-moves {
+    table {
+        tr {
+            td, th {
+                padding: 0.25em;
+            }
+            th {
+                font-size: smaller;
+                font-weight: 500;
+            }
+        }
+    }
 }

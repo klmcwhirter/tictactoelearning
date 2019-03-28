@@ -8,11 +8,13 @@ import { AppMaterialModule } from './app-material.module';
 
 import { AppComponent } from './app.component';
 import { BoardComponent } from './board/board.component';
+import { GameResultPipe } from './game-result.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BoardComponent
+    BoardComponent,
+    GameResultPipe
   ],
   imports: [
     BrowserModule,
