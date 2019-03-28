@@ -1,7 +1,18 @@
-<table>
-  <tr *ngFor="let row of boardService.board.spots; let y = index">
-    <td class="ttt-cell" *ngFor="let piece of row; let x = index" (click)="onPlacePiece(x, y)">
-      <span [class]="colors[piece]">{{piece}}</span>
-    </td>
-  </tr>
-</table>
+<div class="ttt-game-container">
+  <mat-toolbar class="ttt-game mat-elevation-z2" *ngIf="gameService.game.startDate">
+    <h3>Game # {{gameService.game.id}} <span *ngIf="gameService.game.result">{{gameResult()}}</span></h3>
+  </mat-toolbar>
+
+  <mat-card>
+    <mat-card-content>
+      <table>
+        <tr *ngFor="let row of boardService.board.spots; let y = index">
+          <td class="ttt-cell" *ngFor="let piece of row; let x = index" (click)="onPlacePiece(x, y)">
+            <span [class]="colors[piece]">{{piece}}</span>
+          </td>
+        </tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+  <div>&nbsp;</div>
+</div>

@@ -35,12 +35,6 @@ export class AppComponent implements OnInit {
   ngOnInit() {
   }
 
-  gameResult(): string {
-    const results = ['', 'X Wins!', 'O Wins!', 'Tie'];
-    const rc = `  *** ${results[this.gameService.game.result]} ***`;
-    return rc;
-  }
-
   onBlur(event) {
     if (event.target.value) {
       this.gameService.getGame(event.target.value);

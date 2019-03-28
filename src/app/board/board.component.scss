@@ -3,10 +3,21 @@
 .piece-red { color: mat-color($mat-red, 500, 1); }
 .piece-blue { color: mat-color($mat-indigo, 500, 1); }
 
+.ttt-game-container {
+    width: 50%;
+}
 
-table, tr ,td {
-    border: black 2px solid;
+.ttt-game {
+    background-color: mat-color($mat-blue, A100, 0.26);
+}
+
+table {
     border-collapse: collapse;
+    margin: 0 auto;
+
+    tr ,td {
+        border: black 2px solid;
+    }
 }
 
 .ttt-cell {

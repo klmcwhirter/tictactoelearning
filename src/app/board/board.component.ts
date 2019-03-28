@@ -22,6 +22,12 @@ export class BoardComponent implements OnInit {
   ngOnInit() {
   }
 
+  gameResult(): string {
+    const results = ['', 'X Wins!', 'O Wins!', 'Tie'];
+    const rc = `  *** ${results[this.gameService.game.result]} ***`;
+    return rc;
+  }
+
   onPlacePiece(x: number, y: number) {
     // console.log(x, y);
     if (!this.gameService.game.complete && !this.boardService.board.cellOccupied(x, y)) {
