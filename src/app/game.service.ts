@@ -33,7 +33,10 @@ export class GameService {
     this.httpClient.get<Game[]>(`${baseUrl}`)
       .subscribe(
         games => {
-          games.forEach(g => g.playerNames = g.players.map(p => p.name).join(', '));
+          games.forEach(g => {
+            g.numMoves = g.moves.length;
+            g.playerNames = g.players.map(p => p.name).join(', ');
+          });
           games = games.sort((a: Game, b: Game) => b.id - a.id);
           this.gamesSubject.next(games);
         },
