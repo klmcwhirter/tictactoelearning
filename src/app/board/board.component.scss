@@ -1,59 +1,82 @@
 @import "~@angular/material/_theming.scss";
 
-.piece-red { color: mat-color($mat-red, 500, 1); }
-.piece-blue { color: mat-color($mat-indigo, 500, 1); }
+.piece-red {
+  color: mat-color($mat-red, 500, 1);
+}
+.piece-blue {
+  color: mat-color($mat-indigo, 500, 1);
+}
 
 .ttt-board-container {
-    display: grid;
-    grid-gap: 1em;
-    grid-row-gap: 1em;
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas:
-    'game details'
+  display: grid;
+  grid-gap: 1em;
+  grid-row-gap: 1em;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "game details";
 }
 
 .ttt-game-container {
-    grid-area: game;
+  grid-area: game;
 
-    .ttt-game {
-        background-color: mat-color($mat-blue, A100, 0.26);
+  .ttt-game {
+    background-color: mat-color($mat-blue, A100, 0.26);
+  }
+
+  table {
+    margin: 0 auto;
+
+    tr:first-child td {
+      border-top: none;
     }
-    
-    table {
-        margin: 0 auto;
+
+    tr:last-child td {
+      border-bottom: none;
     }
+
+    tr {
+      td:first-child {
+        border-left: none;
+      }
+
+      td:last-child {
+        border-right: none;
+      }
+    }
+  }
 }
 
 .ttt-game-details-container {
-    grid-area: details;
+  grid-area: details;
 }
 
 table {
-    border-collapse: collapse;
-    
-    th ,td {
-        border: black 2px solid;
-    }
+  border-collapse: collapse;
+
+  th,
+  td {
+    border: black 2px solid;
+  }
 }
 
 .ttt-cell {
-    padding: 1em;
-    font-size: xx-large;
-    text-align: center;
-    width: 1.2em;
-    height: 1.2em;
+  padding: 1em;
+  font-size: xx-large;
+  text-align: center;
+  width: 1.2em;
+  height: 1.2em;
 }
 
 .ttt-moves {
-    table {
-        tr {
-            td, th {
-                padding: 0.25em;
-            }
-            th {
-                font-size: smaller;
-                font-weight: 500;
-            }
-        }
+  table {
+    tr {
+      td,
+      th {
+        padding: 0.25em;
+      }
+      th {
+        font-size: smaller;
+        font-weight: 500;
+      }
     }
+  }
 }
