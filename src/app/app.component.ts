@@ -3,11 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import {
   numHumanPlayers,
   PLAYER_PIECES,
-  PlayerKind,
-  PlayerKinds,
   GameResult,
 } from './game.model';
 import { GameService } from './game.service';
+import { CapabilitiesService } from './capabilities.service';
 
 @Component({
   selector: 'app-root',
@@ -16,8 +15,8 @@ import { GameService } from './game.service';
 })
 export class AppComponent implements OnInit {
   PLAYER_PIECES = PLAYER_PIECES;
-  PlayerKinds = PlayerKinds;
   numHumanPlayers = numHumanPlayers;
+  strategies = ['Human'];
 
   numGames = 0;
   winsX = 0;
@@ -27,13 +26,20 @@ export class AppComponent implements OnInit {
   displayedColumns = ['id', 'playerNames', 'numMoves', 'result'];
 
   players = [
-    { number: 0, name: '', kind: PlayerKind.Human },
-    { number: 1, name: '', kind: PlayerKind.Human }
+    { number: 0, name: '', strategy: 'Human' },
+    { number: 1, name: '', strategy: 'Human' }
   ];
 
   constructor(
+    public capabilitiesService: CapabilitiesService,
     public gameService: GameService
   ) {
+    this.capabilitiesService.capabilities$
+      .subscribe(caps => {
+        this.strategies = caps.strategies;
+      });
+    this.capabilitiesService.getCapabilities();
+
     this.gameService.games$
       .subscribe(games => {
         this.numGames = games.length;

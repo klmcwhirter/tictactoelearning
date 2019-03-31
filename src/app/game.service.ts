@@ -37,7 +37,7 @@ export class GameService {
         games => {
           games.forEach(g => {
             g.numMoves = g.moves.length;
-            g.playerNames = g.players.map(p => p.name).join(', ');
+            g.playerNames = g.players.map(p => `${p.name} (${p.strategy})`).join(', ');
           });
           games = games.sort((a: Game, b: Game) => b.id - a.id);
           this.gamesSubject.next(games);

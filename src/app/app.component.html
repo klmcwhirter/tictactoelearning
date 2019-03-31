@@ -18,9 +18,9 @@
       <label class="ttt-labeled" for="player{{p+1}}">Player {{p+1}} ({{PLAYER_PIECES[p]}}): </label>
       <input name="player{{p+1}}" [(ngModel)]="player.name" />
 
-      <mat-radio-group [(ngModel)]="player.kind" name="player{{p+1}}">
-        <mat-radio-button *ngFor="let kind of PlayerKinds" [value]="kind.value" labelPosition="before">
-          {{kind.name}}
+      <mat-radio-group [(ngModel)]="player.strategy" name="player{{p+1}}">
+        <mat-radio-button *ngFor="let strategy of strategies" [value]="strategy" labelPosition="before">
+          {{strategy}}
         </mat-radio-button>
       </mat-radio-group>
     </div>
